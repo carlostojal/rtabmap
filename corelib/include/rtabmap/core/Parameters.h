@@ -737,7 +737,8 @@ class RTABMAP_EXP Parameters
     RTABMAP_PARAM(Grid, FootprintWidth,          float,  0.0,     "Footprint width used to filter points over the footprint of the robot. Footprint length should be set.");
     RTABMAP_PARAM(Grid, FootprintHeight,         float,  0.0,     "Footprint height used to filter points over the footprint of the robot. Footprint length and width should be set.");
     RTABMAP_PARAM(Grid, ScanDecimation,          int,    1,       uFormat("[%s=0 or 2] Decimation of the laser scan before creating cloud.", kGridSensor().c_str()));
-    RTABMAP_PARAM(Grid, CellSize,                float,  0.05,    "Resolution of the occupancy grid.");
+    RTABMAP_PARAM(Grid, CellSize,                float,  0.3,    "Resolution of the occupancy grid.");
+	RTABMAP_PARAM(Grid, LocalCellSize,			 float,	 0.05, 	 "Resolution of the local occupancy grid.")
     RTABMAP_PARAM(Grid, PreVoxelFiltering,       bool,   true,    uFormat("Input cloud is downsampled by voxel filter (voxel size is \"%s\") before doing segmentation of obstacles and ground.", kGridCellSize().c_str()));
     RTABMAP_PARAM(Grid, MapFrameProjection,      bool,   false,   "Projection in map frame. On a 3D terrain and a fixed local camera transform (the cloud is created relative to ground), you may want to disable this to do the projection in robot frame instead.");
     RTABMAP_PARAM(Grid, NormalsSegmentation,     bool,   true,    "Segment ground from obstacles using point normals, otherwise a fast passthrough is used.");
@@ -746,7 +747,8 @@ class RTABMAP_EXP Parameters
     RTABMAP_PARAM(Grid, MaxGroundHeight,         float,  0.0,     uFormat("Maximum ground height (0=disabled). Should be set if \"%s\" is false.", kGridNormalsSegmentation().c_str()));
     RTABMAP_PARAM(Grid, MaxGroundAngle,          float,  45,      uFormat("[%s=true] Maximum angle (degrees) between point's normal to ground's normal to label it as ground. Points with higher angle difference are considered as obstacles.", kGridNormalsSegmentation().c_str()));
     RTABMAP_PARAM(Grid, NormalK,                 int,    20,      uFormat("[%s=true] K neighbors to compute normals.", kGridNormalsSegmentation().c_str()));
-    RTABMAP_PARAM(Grid, ClusterRadius,           float,  0.1,     uFormat("[%s=true] Cluster maximum radius.", kGridNormalsSegmentation().c_str()));
+    RTABMAP_PARAM(Grid, ClusterRadius,           float,  0.5,     uFormat("[%s=true] Local cluster maximum radius.", kGridNormalsSegmentation().c_str()));
+	RTABMAP_PARAM(Grid, LocalClusterRadius,      float,  0.1,     uFormat("[%s=true] Cluster maximum radius.", kGridNormalsSegmentation().c_str()));
     RTABMAP_PARAM(Grid, MinClusterSize,          int,    10,      uFormat("[%s=true] Minimum cluster size to project the points.", kGridNormalsSegmentation().c_str()));
     RTABMAP_PARAM(Grid, FlatObstacleDetected,    bool,   true,    uFormat("[%s=true] Flat obstacles detected.", kGridNormalsSegmentation().c_str()));
 #ifdef RTABMAP_OCTOMAP
